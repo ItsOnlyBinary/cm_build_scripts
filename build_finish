@@ -1,0 +1,46 @@
+#!/bin/bash
+
+SCRIPT_HOME="$(dirname "$(which "$0")")"
+source "$SCRIPT_HOME/config"
+cd "$PROJECT_DIR"
+
+## Find file name of ROM and set variable
+FILE=$(ls $OUT_DIR/target/product/$ANDROID_DEVICE/cm-14.1-*.zip)
+
+## Check if ROM exists before proceding
+if [ ! -e "$FILE" ]; then
+  echo "Build Failed!"
+  exit
+fi
+
+echo "Build Successful!"
+
+## Generate Last Build File with date of last commit
+date -d "$(repo forall -c 'git log -1 --format=%cI' | sort | tail -1) + 1 second" -Iseconds > "$LAST_BUILD_FILE"
+
+## Remove extension of file name and set variable
+NOEXT=${FILE%\.*}
+
+#echo ""
+#echo "Removing previous builds on OTA REST Server."
+#echo ""
+
+#rm "$BUILDDIR"/full/cm-14.1-*
+
+#echo "Copying ROM ($FILE) to OTA REST Server."
+#echo ""
+#cp "$FILE" "$BUILDDIR"/full/
+
+#if [ -e "$CHANGE_FILE" ]; then
+#  echo "Copying changelog ($NOEXT.html) to OTA REST Server."
+#  echo ""
+#  cp "$CHANGE_FILE" "$BUILDDIR"/full/"$NOEXT".html
+#else
+#  echo "Changelog not found!"
+#  echo ""
+#  exit
+#fi
+
+echo ""
+echo "Done."
+echo ""

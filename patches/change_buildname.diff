@@ -1,0 +1,13 @@
+diff --git a/vendor/cm/config/common.mk b/vendor/cm/config/common.mk
+index ab54327..e5dac21 100644
+--- a/vendor/cm/config/common.mk
++++ b/vendor/cm/config/common.mk
+@@ -316,7 +316,7 @@ ifdef CM_BUILDTYPE
+     endif
+ else
+     # If CM_BUILDTYPE is not defined, set to UNOFFICIAL
+-    CM_BUILDTYPE := UNOFFICIAL
++    CM_BUILDTYPE := CUSTOM
+     CM_EXTRAVERSION :=
+ endif
+ 

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SCRIPT_HOME="$(dirname "$(which "$0")")"
+source "$SCRIPT_HOME/config"
+cd "$PROJECT_DIR"
+
+echo "Applying Patches..."
+
+if [ -d $PATCHES_DIR ]; then
+  for patchfile in $PATCHES_DIR/*.diff; do
+    patch -p1 -t -N --no-backup-if-mismatch < $patchfile
+  done
+fi

@@ -1,0 +1,15 @@
+diff --git a/device/samsung/jf-common/jf-common.mk b/device/samsung/jf-common/jf-common.mk
+index dbfdd3b..3f24eca 100644
+--- a/device/samsung/jf-common/jf-common.mk
++++ b/device/samsung/jf-common/jf-common.mk
+@@ -109,8 +109,8 @@ PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/configs/sap.conf:/system/etc/sap.conf
+ 
+ # Gello
+-PRODUCT_PACKAGES += \
+-    Gello
++#PRODUCT_PACKAGES += \
++#    Gello
+ 
+ # IPv6 tethering
+ PRODUCT_PACKAGES += \

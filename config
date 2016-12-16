@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ANDROID_DEVICE=jfltexx
+ANDROID_VERSION=cm-14.1
+
+PROJECT_DIR=/home/build/android
+OUT_DIR=/home/build/android/out
+PATCHES_DIR=/home/build/patches
+CHANGE_FILE=/home/build/changelog-cm14.html
+LAST_BUILD_FILE=/home/build/lastbuild
+
+
+#declare -a REBASE_REPOS
+#REBASE_REPOS=(
+#
+#)

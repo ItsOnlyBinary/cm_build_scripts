@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SCRIPT_HOME="$(dirname "$(which "$0")")"
+source "$SCRIPT_HOME/config"
+cd "$PROJECT_DIR"
+
+"$SCRIPT_HOME/repo_unpatch"
+
+repo sync --no-clone-bundle -j 8
+
+"$SCRIPT_HOME/repo_patch"
+
+
+### UNTESTED
+if [[ "$(declare -p REBASE_REPOS)" =~ "^declare -a" ]]; then
+  for repo in "${REBASE_REPOS[@]}"; do
+    if [ -d "$repo" ]; then
+      cd "$repo"
+      git checkout cm-14.1
+      git fetch cyanogen
+      git rebase cyanogen/cm-14.1
+    fi
+  done
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+SCRIPT_HOME="$(dirname "$(which "$0")")"
+source "$SCRIPT_HOME/config"
+cd "$PROJECT_DIR"
+
+if [ "$1" == "" ]; then
+  echo "Error: Destination file required"
+  exit
+fi
+
+if [ ! -d "$PATCHES_DIR" ]; then
+  echo "Error: No patch dir!"
+  exit
+fi 
+
+repo forall -c "git diff --minimal --src-prefix="a/$(realpath ./ --relative-to=$PROJECT_DIR)/" --dst-prefix="b/$(realpath ./ --relative-to=$PROJECT_DIR)/"" >$PATCHES_DIR/$1

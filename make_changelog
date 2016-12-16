@@ -1,0 +1,46 @@
+#!/bin/bash
+
+SCRIPT_HOME="$(dirname "$(which "$0")")"
+source "$SCRIPT_HOME/config"
+cd "$PROJECT_DIR"
+
+PROJECT_LIST=$PROJECT_DIR/.repo/project.list
+
+NOW=$(date -u)
+
+if [ -e "$PROJECT_LIST" ]; then
+  REPOS=$(cat "$PROJECT_LIST" | sort)
+else
+  echo "Project list not found. Run repo_sync command to generate project list. Exiting!"
+  exit
+fi
+
+if [ -e "$LAST_BUILD_FILE" ]; then
+  LAST_BUILD_DATE=$(cat "$LAST_BUILD_FILE")
+fi
+
+if [ "$LAST_BUILD_DATE" == "" ]; then
+  LAST_BUILD_DATE="7 days ago"
+fi
+
+rm "$CHANGE_FILE"
+
+echo "<!DOCTYPE html><html><body><h2><b><u>Since $NOW</u></b></h2><br>" > "$CHANGE_FILE"
+
+for REPOPATH in $REPOS ; do
+    if [ ! "$REPOPATH" == "" ]; then
+      if [ -d "$PROJECT_DIR"/"$REPOPATH" ]; then
+        cd "$PROJECT_DIR"/"$REPOPATH"
+        GITOUT=$(git log HEAD --pretty="<li>%h (%cr) %s (%an)</li>" --since="$LAST_BUILD_DATE")
+        if [ ! "$GITOUT" == "" ]; then
+          echo "<font size="4"><b>$REPOPATH</b></font>" >> "$CHANGE_FILE"
+          echo '<ul style="list-style-type:square">' >> "$CHANGE_FILE"
+          echo "$GITOUT" >> "$CHANGE_FILE"
+          echo "</ul>" >> "$CHANGE_FILE"
+        fi
+      fi
+    fi
+done
+
+echo "</body></html>" >> "$CHANGE_FILE"
+

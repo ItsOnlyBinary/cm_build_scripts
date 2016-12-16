@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SCRIPT_HOME="$(dirname "$(which "$0")")"
+source "$SCRIPT_HOME/config"
+cd "$PROJECT_DIR"
+
+echo "Cleaning Repo's..."
+repo forall -c 'git reset --hard --quiet;git clean --force'
