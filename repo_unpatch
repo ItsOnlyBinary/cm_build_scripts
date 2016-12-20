@@ -11,3 +11,5 @@ if [ -d $PATCHES_DIR ]; then
     patch -R -p1 -t -N --no-backup-if-mismatch < $patchfile
   done
 fi
+
+find . \( -name \*.orig -o -name \*.rej \) -delete

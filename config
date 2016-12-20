@@ -3,12 +3,16 @@
 ANDROID_DEVICE=jfltexx
 ANDROID_VERSION=cm-14.1
 
-PROJECT_DIR=/home/build/android
-OUT_DIR=/home/build/android/out
+PROJECT_DIR=/home/build/android/cm
+OUT_DIR=/home/build/android/cm/out
 PATCHES_DIR=/home/build/patches
 CHANGE_FILE=/home/build/changelog-cm14.html
-LAST_BUILD_FILE=/home/build/lastbuild
+LAST_BUILD_FILE=/home/build/build.last
+BUILD_LOG_FILE=/home/build/build.log
 
+OTA_DIR=user@example.com:/var/www/builds/full
+#leave empty to use cp instead of scp
+OTA_DIR_KEY=/path/to/ssh_key 
 
 #declare -a REBASE_REPOS
 #REBASE_REPOS=(

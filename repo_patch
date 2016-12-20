@@ -11,3 +11,6 @@ if [ -d $PATCHES_DIR ]; then
     patch -p1 -t -N --no-backup-if-mismatch < $patchfile
   done
 fi
+
+# Clean out any .rej or .orig so it doesnt break the build if a patch failed
+find . \( -name \*.orig -o -name \*.rej \) -delete

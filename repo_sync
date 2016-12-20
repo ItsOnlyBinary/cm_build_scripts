@@ -6,7 +6,7 @@ cd "$PROJECT_DIR"
 
 "$SCRIPT_HOME/repo_unpatch"
 
-repo sync --no-clone-bundle -j 8
+repo sync --no-clone-bundle -j 8 --force-sync
 
 "$SCRIPT_HOME/repo_patch"
 
@@ -17,8 +17,8 @@ if [[ "$(declare -p REBASE_REPOS)" =~ "^declare -a" ]]; then
     if [ -d "$repo" ]; then
       cd "$repo"
       git checkout cm-14.1
-      git fetch cyanogen
-      git rebase cyanogen/cm-14.1
+      git fetch upstream
+      git rebase upstream/cm-14.1
     fi
   done
 fi

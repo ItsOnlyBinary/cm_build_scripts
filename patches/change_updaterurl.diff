@@ -1,12 +1,12 @@
-diff --git a/./res/values/config.xml b/./res/values/config.xml
+diff --git a/packages/apps/CMUpdater/res/values/config.xml b/packages/apps/CMUpdater/res/values/config.xml
 index f12ac5b..3ea039b 100644
---- a/./res/values/config.xml
-+++ b/./res/values/config.xml
+--- a/packages/apps/CMUpdater/res/values/config.xml
++++ b/packages/apps/CMUpdater/res/values/config.xml
 @@ -8,6 +8,6 @@
  -->
  <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
      <!-- CMUpdate Config Strings -->
 -    <string name="conf_update_server_url_def" translatable="false">https://download.cyanogenmod.org/api</string>
-+    <string name="conf_update_server_url_def" translatable="false">https://example.com/api</string>
++    <string name="conf_update_server_url_def" translatable="false">https://itsonlybinary.com/roms/api</string>
      <string name="conf_changelog_url" translatable="false">http://localhost/changelog.xml</string>
  </resources>

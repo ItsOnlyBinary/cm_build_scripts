@@ -2,7 +2,6 @@
 
 SCRIPT_HOME="$(dirname "$(which "$0")")"
 source "$SCRIPT_HOME/config"
-cd "$PROJECT_DIR"
 
 if [ "$1" == "" ]; then
   echo "Error: Destination file required"
@@ -14,4 +13,13 @@ if [ ! -d "$PATCHES_DIR" ]; then
   exit
 fi 
 
-repo forall -c "git diff --minimal --src-prefix="a/$(realpath ./ --relative-to=$PROJECT_DIR)/" --dst-prefix="b/$(realpath ./ --relative-to=$PROJECT_DIR)/"" >$PATCHES_DIR/$1
+echo "Making Patch $1"
+echo ""
+
+PREFIX="$(realpath $(git rev-parse --show-toplevel) --relative-to=$PROJECT_DIR)"
+
+git diff --minimal --src-prefix="a/$PREFIX/" --dst-prefix="b/$PREFIX/">"$PATCHES_DIR/$1.diff"
+
+if [ -f "$PATCHES_DIR/$1.diff" ]; then
+  more "$PATCHES_DIR/$1"
+fi

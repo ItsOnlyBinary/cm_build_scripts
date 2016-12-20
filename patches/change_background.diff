@@ -1,0 +1,14 @@
+diff --git a/frameworks/base/core/res/res/drawable/background_holo_dark.xml b/frameworks/base/core/res/res/drawable/background_holo_dark.xml
+index 7cfae4d..94ff599 100644
+--- a/frameworks/base/core/res/res/drawable/background_holo_dark.xml
++++ b/frameworks/base/core/res/res/drawable/background_holo_dark.xml
+@@ -15,8 +15,5 @@
+ -->
+ 
+ <shape xmlns:android="http://schemas.android.com/apk/res/android">
+-    <gradient
+-            android:startColor="#ff000000"
+-            android:endColor="#ff272d33"
+-            android:angle="270" />
++    <solid android:color="#000000" />
+ </shape>
